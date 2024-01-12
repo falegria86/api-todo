@@ -21,8 +21,16 @@ export class Server {
     async start() {
         //*Middlewares
 
+
         //*Public Folder
         this.app.use(express.static(this.publicPath));
+
+        //*Routes
+        this.app.get('/api/todos', (req, res) => {
+            res.json([
+                { id: 1, text: 'Buy milk', createdAt: new Date() }
+            ])
+        })
 
         this.app.listen(this.port, () => {
             console.log(`Server running on port: ${this.port}`)
